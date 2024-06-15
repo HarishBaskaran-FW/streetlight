@@ -1,6 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-};
+const isProd = process.env.NODE_ENV === 'production';
 
-export default nextConfig;
+module.exports = {
+  assetPrefix: isProd ? '/streetlight/' : '',
+  images: {
+    loader: 'akamai',
+    path: '',
+  },
+};
