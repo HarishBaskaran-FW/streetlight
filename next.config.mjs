@@ -1,6 +1,7 @@
 const isProd = process.env.NODE_ENV === 'production';
 
-module.exports = {
+export default {
+  output: 'export',
   assetPrefix: isProd ? '/streetlight/' : '',
   images: {
     loader: 'akamai',
