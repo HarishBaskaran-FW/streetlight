@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import Button from "@/components/button";
 import Sidebar from "@/layouts/sidebar";
+import React from "react";
 
 // Example JSON configuration
 const sidebarConfig = {
@@ -9,12 +9,12 @@ const sidebarConfig = {
     {
       title: "Home",
       icon: "fas fa-house",
-      path: "/home"
+      path: "/storybook",
     },
     {
-      title: "Profile",
+      title: "Button",
       icon: "fas fa-user",
-      path: "/about"
+      path: "/storybook/button",
     },
     {
       title: "Services",
@@ -22,27 +22,136 @@ const sidebarConfig = {
       path: "/services",
       subMenu: [
         {
+          title: "Home",
+          icon: "fas fa-house",
+          path: "/storybook",
+        },
+        {
+          title: "Button",
+          icon: "fas fa-user",
+          path: "/storybook/button",
+        },
+        {
           title: "Web Development",
           icon: "fas fa-house",
-          path: "/services/web-development"
+          path: "/services/web-development",
         },
         {
           title: "SEO",
-          path: "/services/seo"
-        }
-      ]
+          path: "/services/seo",
+        },
+        {
+          title: "Home",
+          icon: "fas fa-house",
+          path: "/storybook",
+        },
+        {
+          title: "Button",
+          icon: "fas fa-user",
+          path: "/storybook/button",
+        },
+        {
+          title: "Web Development",
+          icon: "fas fa-house",
+          path: "/services/web-development",
+        },
+        {
+          title: "SEO",
+          path: "/services/seo",
+        },
+        {
+          title: "Home",
+          icon: "fas fa-house",
+          path: "/storybook",
+        },
+        {
+          title: "Button",
+          icon: "fas fa-user",
+          path: "/storybook/button",
+        },
+        {
+          title: "Web Development",
+          icon: "fas fa-house",
+          path: "/services/web-development",
+        },
+        {
+          title: "SEO",
+          path: "/services/seo",
+        },
+      ],
     },
     {
       title: "Contact",
-      path: "/contact"
-    }
-  ]
+      path: "/contact",
+    },
+    {
+      title: "Services 2",
+      icon: "fas fa-cart-shopping",
+      path: "/services",
+      subMenu: [
+        {
+          title: "Home",
+          icon: "fas fa-house",
+          path: "/storybook",
+        },
+        {
+          title: "Button",
+          icon: "fas fa-user",
+          path: "/storybook/button",
+        },
+        {
+          title: "Web Development",
+          icon: "fas fa-house",
+          path: "/services/web-development",
+        },
+        {
+          title: "SEO",
+          path: "/services/seo",
+        },
+        {
+          title: "Home",
+          icon: "fas fa-house",
+          path: "/storybook",
+        },
+        {
+          title: "Button",
+          icon: "fas fa-user",
+          path: "/storybook/button",
+        },
+        {
+          title: "Web Development",
+          icon: "fas fa-house",
+          path: "/services/web-development",
+        },
+        {
+          title: "SEO",
+          path: "/services/seo",
+        },
+        {
+          title: "Web Testing",
+          icon: "fas fa-house",
+          path: "/services/web-development",
+        },
+        {
+          title: "SOO",
+          path: "/services/seo",
+        },
+      ],
+    },
+  ],
 };
 
-export default function StoryBook() {
- return (
-  <>
-    <Sidebar menuItems={sidebarConfig.menuItems} />
-  </>
- );
+export default function StoryBookLayout({ children }) {
+  return (
+    <div className="flex h-screen">
+      <div className="m-5">
+        <Sidebar
+          companyName="Thruways"
+          companyIcon="fas fa-text-width"
+          menuItems={sidebarConfig.menuItems}
+        />
+      </div>
+      <main className="flex-grow p-4">{children}</main>
+    </div>
+  );
 }

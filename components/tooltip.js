@@ -17,8 +17,10 @@ export default function Tooltip(props) {
             ? "left-5 right-20"
             : props.position == "left"
             ? "right-10 left-50"
+            : props.position == "down"
+            ? "bottom-5"
             : position
-        }${fontSize(props.size)} ${props.className}`}
+        } ${fontSize(props.size)} ${props.className}`}
       >
         {props.message}
       </span>
