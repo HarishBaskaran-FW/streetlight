@@ -16,7 +16,7 @@ const li_styles = (isCollapsed) =>
   } flex flex-row gap-2 grow hover:bg-sky-400 group hover:rounded hover:cursor-pointer`;
 const icon_styles = `text-white bg-sky-600 px-1 group-hover:bg-sky-400 group-hover:cursor-pointer`;
 const icon_styles_collapsed = `text-white bg-sky-600 pl-[10px] group-hover:bg-sky-400 group-hover:cursor-pointer`;
-const span_styles = `!block px-1 py-1 w-full group-hover:bg-sky-400`;
+const span_styles = `!block px-1 pb-1 pt-[2px] w-full group-hover:bg-sky-400`;
 const cname_styles = `!block px-1 py-1 w-full`;
 
 const Sidebar = (props) => {
@@ -43,11 +43,6 @@ const Sidebar = (props) => {
       router.pathname === path ? "!bg-gray-700 " : ""
     } ${baseClasses} ${extraClasses}`;
 
-  const navigateToPath = (path) => {
-    setIsCollapsed(true); // Collapse sidebar after navigation
-    router.push(path);
-  };
-
   const renderLogo = (item, isCollapsed) => (
     <Logo
       icon={item.icon}
@@ -61,14 +56,12 @@ const Sidebar = (props) => {
   );
 
   const renderLink = (item, size, type) => (
-    <Link href={item.path} legacyBehavior passHref>
+    <Link href={item.path} legacyBehavior passHref key={`link-${item.path}`}>
       <a className={getClassNames(item.path, span_styles, `${size} ${type}`)}>
         {item.title}
       </a>
     </Link>
   );
-
-
 
   const renderSubMenu = (subMenu) => {
     return (
@@ -76,7 +69,7 @@ const Sidebar = (props) => {
         <ul className={`pl-[20px] pt-[10px]  ${ul_styles}`}>
           {subMenu.map((item, index) => (
             <li
-              key={index}
+              key={`submenu-item-${index}`}
               className={getClassNames(item.path, `${li_styles(isCollapsed)}`)}
             >
               {renderLogo(item, isCollapsed)}
@@ -89,9 +82,7 @@ const Sidebar = (props) => {
   };
 
   return (
-    <div
-      className={`${container_styles(isCollapsed)}`}
-    >
+    <div className={`${container_styles(isCollapsed)}`}>
       <div
         className={` ${
           isCollapsed ? "" : "ml-10 "

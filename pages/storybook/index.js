@@ -12,12 +12,17 @@ const sidebarConfig = {
       path: "/storybook",
     },
     {
-      title: "Button",
-      icon: "fas fa-user",
-      path: "/storybook/button",
+      title: "Components",
+      icon: "fas fa-ticket",
+      path: "/storybook/components",
     },
     {
-      title: "Services",
+      title: "Profile",
+      icon: "fas fa-user",
+      path: "/storybook/user",
+    },
+    {
+      title: "Cart",
       icon: "fas fa-cart-shopping",
       path: "/services",
       subMenu: [

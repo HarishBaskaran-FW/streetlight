@@ -47,5 +47,6 @@ props
     flag
     onClick
     left
+    middle
     right
 */
