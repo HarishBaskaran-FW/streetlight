@@ -12,6 +12,8 @@ const PopupModal = (props) => {
     height,
     width,
     contentWidth,
+    outerStyles,
+    containerStyles,
     header,
     children,
     saveLabel,
@@ -24,7 +26,7 @@ const PopupModal = (props) => {
   return (
     <div>
       {flag ? (
-        <div className="fixed z-10 inset-0 overflow-auto">
+        <div className={`fixed z-10 inset-0 overflow-auto ${outerStyles}`}>
           <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div
               className="fixed inset-0 transition-opacity"
@@ -33,14 +35,18 @@ const PopupModal = (props) => {
               <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>
 
-            <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div
+              className={`fixed inset-0 flex items-center justify-center z-50 `}
+            >
               <div
                 className={`inline-block align-bottom bg-white rounded-lg text-left 
               overflow-hidden shadow-xl transform transition-all 
-              flex flex-col justify-between 
+              flex flex-col justify-between
               ${height ? height : ""} ${width ? width : ""}`}
               >
-                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div
+                  className={`${containerStyles} px-4 pt-5 pb-4 sm:p-6 sm:pb-4 `}
+                >
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <h3 className="text-lg leading-6 font-medium text-gray-900">
@@ -50,24 +56,34 @@ const PopupModal = (props) => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                  <Button
-                    label="Close"
-                    size="small"
-                    type="primary"
-                    className="h-[33px] !py-0 !mt-[3px]"
-                    onClick={close}
-                  />
-                  {save && (
-                    <Button
-                      label={saveLabel ? saveLabel : "Save"}
-                      size="small"
-                      type="primary"
-                      className="h-[33px] !py-0 !mt-[3px]"
-                      onClick={save}
-                    />
-                  )}
-                </div>
+                {close ? (
+                  save ? (
+                    <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                      {close && (
+                        <Button
+                          label="Close"
+                          size="small"
+                          type="primary"
+                          className="h-[33px] !py-0 !mt-[3px]"
+                          onClick={close}
+                        />
+                      )}
+                      {save && (
+                        <Button
+                          label={saveLabel ? saveLabel : "Save"}
+                          size="small"
+                          type="primary"
+                          className="h-[33px] !py-0 !mt-[3px]"
+                          onClick={save}
+                        />
+                      )}
+                    </div>
+                  ) : (
+                    <> </>
+                  )
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
           </div>

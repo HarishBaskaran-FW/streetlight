@@ -53,6 +53,8 @@ props
     className
     flag
     onClick
-    left
-    right
+    first
+    second
+    third
+    fourth
 */

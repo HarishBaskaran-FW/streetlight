@@ -6,7 +6,7 @@ export default function Close(props) {
   return (
     <Tooltip message={"Close"} position="right">
       <div
-        className="mt-[3px] ml-[10px] min-w-[15px] min-h-[15px] cursor-pointer"
+        className="min-w-[15px] min-h-[15px] cursor-pointer"
         onClick={props.onClick}
       >
         <FontAwesomeIcon
