@@ -1,4 +1,4 @@
-import { fontSize, typeColor } from "./configuration/config";
+import { fontSize, typeColor } from "../configuration/config";
 
 const styles = `
 mt-[2px] px-2 py-[6px] 

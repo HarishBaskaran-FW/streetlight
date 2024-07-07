@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { fontSize, typeColor } from "../components/configuration/config";
-import Logo from "@/components/logo";
-import Button from "@/components/button";
+import Logo from "@/components/native/logo";
+import Button from "@/components/native/button";
+import PopupModal from "@/components/native/popup1";
 
 const container_styles = (isCollapsed) =>
   `bg-sky-600 h-auto h-full border-r-2 rounded-lg border-gray-300 transition-all duration-300 overflow-auto  ${
@@ -86,7 +87,7 @@ const Sidebar = (props) => {
       <div
         className={` ${
           isCollapsed ? "" : "ml-10 "
-        } my-3 mb-7 flex gap-2 justify-around`}
+        } my-3 mb-3 flex gap-2 justify-around`}
       >
         {props.companyIcon && (
           <Logo
@@ -101,7 +102,8 @@ const Sidebar = (props) => {
         )}
         <Button
           onClick={toggleSidebar}
-          className="bg-sky-700 rounded-full !py-0 !px-2 !mr-2 !my-0 justify-last hover:bg-sky-500"
+          type="info"
+          className="rounded-full"
           label={isCollapsed ? ">" : "<"}
         />
       </div>
@@ -110,7 +112,7 @@ const Sidebar = (props) => {
         {props.menuItems.map((item, index) => (
           <>
             <li
-              key={index}
+              key={`menu-item-${index}`}
               className={getClassNames(item.path, `${li_styles(isCollapsed)}`)}
             >
               {renderLogo(item, isCollapsed)}
@@ -149,10 +151,19 @@ const Sidebar = (props) => {
                 )
               )}
             </li>
-
-            {item.subMenu && (
+            {!isCollapsed && item.subMenu && (
               <>{expandedSubMenus[index] && renderSubMenu(item.subMenu)}</>
             )}
+           
+            {/* <PopupModal
+              flag={isCollapsed}
+              containerStyles="bg-sky-600 !pt-1 !pb-2 !pl-0"
+            >
+              <p>hi there</p>
+              {item.subMenu && (
+                <>{expandedSubMenus[index] && renderSubMenu(item.subMenu)}</>
+              )}
+            </PopupModal> */}
           </>
         ))}
       </ul>

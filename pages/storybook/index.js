@@ -17,9 +17,9 @@ const sidebarConfig = {
       path: "/storybook/components",
     },
     {
-      title: "Profile",
+      title: "Header",
       icon: "fas fa-user",
-      path: "/storybook/user",
+      path: "/storybook/header",
     },
     {
       title: "Cart",
@@ -100,9 +100,9 @@ const sidebarConfig = {
           path: "/storybook",
         },
         {
-          title: "Button",
+          title: "Header",
           icon: "fas fa-user",
-          path: "/storybook/button",
+          path: "/storybook/header",
         },
         {
           title: "Web Development",

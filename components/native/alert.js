@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import Tooltip from "./tooltip";
+import Tooltip from "../tooltip";
 
 export default function Alert(props) {
   const handleCloseClick = () => {

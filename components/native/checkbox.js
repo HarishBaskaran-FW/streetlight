@@ -1,4 +1,4 @@
-import { fontSize, typeColor } from "./configuration/config";
+import { fontSize, typeColor } from "../configuration/config";
 
 const CheckBox = (props) => {
   return (

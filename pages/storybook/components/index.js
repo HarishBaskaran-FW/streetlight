@@ -1,73 +1,151 @@
-import Button from "@/components/button";
+import Button from "@/components/native/button";
 import StoryBookLayout from "..";
-import Cancel from "@/components/cancel_button";
-import CheckMark from "@/components/check_button";
-import Save from "@/components/save_button";
-import Close from "@/components/close_button";
-import Create from "@/components/create_button";
-import Delete from "@/components/delete_button";
-import Edit from "@/components/edit_button";
-import Input from "@/components/input";
-import InputNoChange from "@/components/inputNoChange";
-import InputFloating from "@/components/input_floating";
-import InputFloatingNoChange from "@/components/input_floating_NoChange";
-import Toggle2 from "@/components/toggle2";
-import Toggle3 from "@/components/toggle3";
-import Toggle4 from "@/components/toggle4";
-import Switch from "@/components/switch";
-import MyComponent from "@/components/mycomponent";
-import TextArea from "@/components/textarea";
-import Header from "@/components/header";
-import Range from "@/components/range";
-import ProductTable from "@/components/table";
-import PopupModal from "@/components/popup1";
+import Input from "@/components/native/input";
+import InputNoChange from "@/components/native/inputNoChange";
+import InputFloat from "@/components/native/input_float";
+import InputFloatBorder from "@/components/native/input_float_border";
+import InputFloating from "@/components/native/input_floating";
+import InputFloatingNoChange from "@/components/native/input_floating_NoChange";
+import Toggle2 from "@/components/native/toggle2";
+import Toggle3 from "@/components/native/toggle3";
+import Toggle4 from "@/components/native/toggle4";
+import Switch from "@/components/native/switch";
+import MyComponent from "@/components/native/mycomponent";
+import TextArea from "@/components/native/textarea";
+import Header from "@/components/native/header";
+import Range from "@/components/native/range";
+import ProductTable from "@/components/native/table";
+import PopupModal from "@/components/native/popup1";
+import Logo from "@/components/native/logo";
+import { useState } from "react";
 
 export default function SB_Components() {
+  // Dependent on two files Button.js and Logo.js
   const SB_Button = () => {
     return (
       <>
-        <p>Button Types :</p>
+        <p className="font-bold underline text-sky-600">1. ButtonTypes :</p>
+
         <div className="flex gap-2">
+          <p className="ml-10 pt-2"> Style : </p>
+          <Button label="primary" />
+          <Button label="primary" className="rounded-full" />
+          <Button label="1" className="rounded-full " />
+
+          <Button label="with icon" type="primary" icon="fas fa-house" />
+          <Button
+            label="with icon"
+            icon="fas fa-house"
+            className="rounded-full"
+          />
+          <Button icon="fas fa-house" />
+        </div>
+
+        <div className="flex gap-2">
+          <p className="ml-10 pt-2"> Sizes : </p>
+          <Button label="small" size="small" />
+          <Button label="medium" size="medium" />
+          <Button label="large" size="large" />
+          <Button label="EXTRA LARGE" size="extralarge" />
+        </div>
+
+        <div className="flex gap-2">
+          <p className="ml-10 pt-1">Color : </p>
           <Button label="primary" type="primary" />
           <Button label="primary_inverse" type="primary_inverse" />
-          <Button label="primary_link" type="primary_link" />
-          <Button label="secondary" type="secondary" />
-        </div>
-      </>
-    );
-  };
 
-  const SB_Icon_Button = () => {
-    return (
-      <>
-        <p>Icon Button Types :</p>
-        <div className="flex gap-2">
-          <Cancel />
-          <CheckMark />
-          <Close />
-          <Save />
-          <Create />
-          <Delete />
-          <Edit />
-          {/* 
-            <Copy />
-            <
-          */}
+          <Button label="secondary" type="secondary" />
+          <Button label="info" type="info" />
+          <Button label="success" type="success" />
+          <Button label="warning" type="warning" />
+          <Button label="error" type="error" />
+
+          <Button label="primary_link" type="primary_link" />
         </div>
+
+        <div className="flex gap-2 ">
+          <p className="pt-1">Icon Button Types :</p>
+          <Button icon="fas fa-xmark" type="secondary" />
+          <Button icon="fas fa-circle-check" type="info" />
+          <Button icon="fas fa-trash" type="success" />
+          <Button icon="fas fa-pen" type="warning" />
+          <Button icon="fas fa-check" type="error" />
+          <Button
+            icon="fas fa-check"
+            type="primary_link"
+            className="w-[37px] h-[37px] bg-green-300"
+          />
+          <Button
+            icon="fas fa-folder-plus"
+            type="primary_link"
+            className="w-[37px] h-[37px] bg-green-300"
+          />
+        </div>
+
+        <p className="border-b-2 border-sky-600 my-2"></p>
       </>
     );
   };
 
   const SB_Input = () => {
+    const [inputName1, setInputName1] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [profileName, setProfileName] = useState("");
+
     return (
       <>
         <p>Input Types :</p>
         <div className="flex gap-2">
-          <Input />
-          <InputNoChange />
+          <Input
+            placeholder="Enter your text here"
+            value={inputName1}
+            setValue={setInputName1}
+          />
+          <InputFloat
+            id="last-name"
+            label="Last Name"
+            floatIcon="fas fa-person"
+            value={lastName}
+            setValue={setLastName}
+          />
+          <InputFloat
+            id="profile-Name-1"
+            placeholder="Profile Name"
+            staticIcon="fas fa-users"
+            value={profileName}
+            setValue={setProfileName}
+          />
           <InputFloating label="Name" size="medium" />
           <InputFloatingNoChange label="Name" />
         </div>
+        <div className="flex gap-2 mt-3">
+          <InputFloatBorder 
+          label="floater"
+          name="floater"
+          />
+          <InputFloat
+            id="first-name"
+            label="First Name"
+            value={firstName}
+            setValue={setFirstName}
+          />
+          <InputFloat
+            id="last-name"
+            label="Last Name"
+            floatIcon="fas fa-person"
+            value={lastName}
+            setValue={setLastName}
+          />
+          <InputFloat
+            id="profile-Name"
+            label="Profile Name"
+            staticIcon="fas fa-users"
+            value={profileName}
+            setValue={setProfileName}
+          />
+        </div>
+        <p className="border-b-2 border-sky-600 my-2"></p>
       </>
     );
   };
@@ -93,11 +171,11 @@ export default function SB_Components() {
   return (
     <StoryBookLayout>
       <div className="flex flex-col gap-2">
-        <PopupModal flag={true} containerStyles="bg-sky-600 !pt-1 !pb-2 !pl-0">
+        {/* <PopupModal flag={false} containerStyles="bg-sky-600 !pt-1 !pb-2 !pl-0">
           <div>hi there we welcome you</div>
-        </PopupModal>
+        </PopupModal> */}
         {SB_Button()}
-        {SB_Icon_Button()}
+
         {SB_Input()}
         {SB_Toggle()}
         <div className="flex">

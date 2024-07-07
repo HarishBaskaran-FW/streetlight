@@ -12,34 +12,31 @@ export function fontSize(size) {
 }
 
 export function typeColor(color) {
-  let primary = `text-white hover:text-white 
-    bg-sky-600 hover:bg-sky-400 active:bg-sky-600`;
-
+  let primary = `text-white hover:text-white !block 
+    bg-sky-600 group-hover:bg-sky-400 group-active:bg-sky-600`;
   // border-blue-400 rounded-lg
-  let primary_link = `
-    text-sky-600 
-    bg-white-400
-    hover:text-sky 
-    hover:bg-white-600
-    active:bg-white-600`;
 
-  let primary_inverse = `
-    text-sky-600 
-    bg-white-400
-    border border-sky-600
-    hover:text-sky 
-    hover:bg-white-600
-    active:bg-white-600`;
+  let primary_link = `text-sky-600 group-hover:text-sky !block 
+    bg-white-400 group-hover:bg-white-600 group-active:bg-white-600`;
 
-  let secondary = `text-white hover:text-white 
+  let primary_inverse = `text-sky-600 hover:text-sky !block 
+    bg-white-400  group-hover:bg-white-600 active:bg-white-600 
+    border border-sky-600`;
+
+  let secondary = `text-white hover:text-white !block 
     bg-sky-400 hover:bg-sky-600 active:bg-sky-600`;
 
-  let warning = `text-white hover:text-white 
-    bg-sky-400 hover:bg-sky-600 active:bg-sky-600`;
+  let info = `text-white hover:text-white !block 
+    bg-blue-400 hover:bg-blue-600 active:bg-blue-600`;
 
-  let error = " ";
-  let outlined = "";
-  let disabled = "";
+  let success = `text-white hover:text-white !block 
+    bg-green-400 hover:bg-green-600 active:bg-green-600`;
+
+  let warning = `text-white hover:text-white !block 
+    bg-yellow-400 hover:bg-yellow-600 active:bg-yellow-600`;
+
+  let error = `text-white hover:text-white !block 
+    bg-red-400 hover:bg-red-600 active:bg-red-600`;
 
   let typeColor = color
     ? color.toLowerCase() === "primary"
@@ -52,6 +49,12 @@ export function typeColor(color) {
       ? secondary
       : color.toLowerCase() === "warning"
       ? warning
+      : color.toLowerCase() === "error"
+      ? error
+      : color.toLowerCase() === "success"
+      ? success
+      : color.toLowerCase() === "info"
+      ? info
       : primary
     : primary;
   return typeColor;

@@ -1,4 +1,4 @@
-import { fontSize, typeColor } from "./configuration/config";
+import { fontSize, typeColor } from "../configuration/config";
 
 const styles = `
 bg-[#f8f8f8] min-w-[25%] max-w-full min-h-[180px] p-[10px] 

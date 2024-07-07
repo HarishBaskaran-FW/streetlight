@@ -1,5 +1,5 @@
 import { exportStateAsJSON } from "../hb_app/1_body/utils/exportStateAsJSON";
-import { fontSize, typeColor } from "./configuration/config";
+import { fontSize, typeColor } from "../configuration/config";
 
 const styles = `
 border rounded outline-none 

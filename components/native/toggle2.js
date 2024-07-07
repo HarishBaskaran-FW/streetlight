@@ -1,4 +1,4 @@
-import { fontSize, typeColor } from "./configuration/config";
+import { fontSize, typeColor } from "../configuration/config";
 
 const containerStyles = `
 flex justify-around min-w-[15%] p-1 mb-2 border-2 rounded-full border-sky-600 bg-gray-200

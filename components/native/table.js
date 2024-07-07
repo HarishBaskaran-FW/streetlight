@@ -1,7 +1,5 @@
 import React from "react";
 import Button from "./button";
-import Edit from "./edit_button";
-import Delete from "./delete_button";
 
 const ProductTable = ({
   headers,
@@ -39,8 +37,8 @@ const ProductTable = ({
                   ))}
                   {action && (
                     <td key={index} className="px-6 py-4 flex gap-5">
-                      <Edit onClick={() => onEditClick(row)} />
-                      <Delete onClick={() => onDeleteClick(row)} />
+                      <Button icon="fas fa-pen" onClick={() => onEditClick(row)} />
+                      <Button icon="fas fa-trash" onClick={() => onDeleteClick(row)} />
                     </td>
                   )}
                 </tr>
