@@ -15,7 +15,7 @@ const li_styles = (isCollapsed) =>
   `ml-[3px] pl-[7px] py-1 ${
     isCollapsed ? "w-[90%]" : "w-[97%]"
   } flex flex-row gap-2 grow hover:bg-sky-400 group hover:rounded hover:cursor-pointer`;
-const icon_styles = `text-white bg-sky-600 px-1 group-hover:bg-sky-400 group-hover:cursor-pointer`;
+const icon_styles = `text-white bg-sky-600 mt-1 px-1 group-hover:bg-sky-400 group-hover:cursor-pointer`;
 const icon_styles_collapsed = `text-white bg-sky-600 pl-[10px] group-hover:bg-sky-400 group-hover:cursor-pointer`;
 const span_styles = `!block px-1 pb-1 pt-[2px] w-full group-hover:bg-sky-400`;
 const cname_styles = `!block px-1 py-1 w-full`;
@@ -87,12 +87,14 @@ const Sidebar = (props) => {
       <div
         className={` ${
           isCollapsed ? "" : "ml-10 "
-        } my-3 mb-3 flex gap-2 justify-around`}
+        } mt-4 mb-3 flex gap-2 justify-around`}
       >
         {props.companyIcon && (
           <Logo
             icon={props.companyIcon}
-            className={` mt-[9px] mr-5 ${icon_styles}`}
+            className={` mt-[10px] ${
+              isCollapsed ? "" : "mr-5 "
+            } ${icon_styles}`}
           />
         )}
         {!isCollapsed && props.companyName && (
@@ -103,7 +105,7 @@ const Sidebar = (props) => {
         <Button
           onClick={toggleSidebar}
           type="info"
-          className="rounded-full"
+          className="!p-1 !m-0"
           label={isCollapsed ? ">" : "<"}
         />
       </div>
