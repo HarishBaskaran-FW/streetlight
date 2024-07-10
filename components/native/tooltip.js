@@ -1,6 +1,6 @@
 import { fontSize, typeColor } from "../configuration/config";
 
-const position = `top-8`;
+const position = `-top-6`;
 const styles = `absolute 
 rounded bg-gray-800 scale-0 transition-all 
 p-2 text-xs text-white group-hover:scale-100`;
@@ -11,14 +11,14 @@ export default function Tooltip(props) {
       {props.children}
       <span
         className={`${styles} ${
-          props.position == "right"
-            ? "left-10 right-50"
+          props.position == "left"
+            ? "-left-8"
             : props.position == "lessRight"
             ? "left-5 right-20"
-            : props.position == "left"
-            ? "right-10 left-50"
+            : props.position == "right"
+            ? "right-10"
             : props.position == "down"
-            ? "bottom-5"
+            ? "-bottom-6"
             : position
         } ${fontSize(props.size)} ${props.className}`}
       >

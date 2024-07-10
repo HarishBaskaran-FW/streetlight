@@ -2,7 +2,8 @@ import { fontSize, typeColor } from "../configuration/config";
 
 const styles = `
 bg-[#f8f8f8] min-w-[25%] max-w-full min-h-[180px] p-[10px] 
-border-[2px] border-solid border-grey text-[14px]
+border-[2px] border-solid border-grey text-[14px] 
+outline-none focus:border-sky-600
 `;
 
 const TextArea = (props) => {

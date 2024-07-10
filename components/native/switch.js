@@ -13,7 +13,7 @@ const Switch = (props) => {
           disabled={props.disabled}
         />
         <div
-          className="w-7 h-4 bg-gray-200 
+          className="min-w-7 min-h-4 bg-gray-200 
         
         peer-focus:outline-none 
         peer-focus:ring-2 

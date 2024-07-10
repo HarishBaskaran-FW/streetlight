@@ -20,6 +20,7 @@ import Logo from "@/components/native/logo";
 import { useState } from "react";
 import CheckBox from "@/components/native/checkbox";
 import Radio from "@/components/native/radio";
+import MultiRangeSlider from "@/components/native/range_double";
 
 export default function SB_Components() {
   // Dependent on two files Button.js and Logo.js
@@ -334,6 +335,32 @@ export default function SB_Components() {
     );
   };
 
+  const SB_Range = () => {
+    const [rangeValue, setRangeValue] = useState(8);
+    const [sliderValues, setSliderValues] = useState({ min: 0, max: 100 });
+
+    const handleSliderChange = (values) => {
+      setSliderValues(values);
+      // Handle any other logic here based on the slider values
+    };
+
+    return (
+      <div className="flex flex-col gap-3">
+         <p className="font-bold underline text-sky-600 mb-2">
+          Range Types :
+        </p>
+        <div className="flex gap-2">
+          <Range value={rangeValue} setValue={setRangeValue} />
+          <p>Range Value: {rangeValue}</p>
+        </div>
+        <div>
+          <MultiRangeSlider min={1} max={100} onChange={handleSliderChange} />
+          <p>sliderValues: {JSON.stringify(sliderValues)}</p>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <StoryBookLayout>
       <div className="flex flex-col gap-2">
@@ -344,16 +371,18 @@ export default function SB_Components() {
         {SB_Input()}
         <div className="flex gap-2 ">
           {SB_Checkbox()}
-          <p className="border-r-2 border-sky-600 mx-3"></p>
+          <p className="border-r-2 border-sky-600 mx-3" />
           {SB_Radio()}
-          <p className="border-r-2 border-sky-600 mx-3"></p>
+          <p className="border-r-2 border-sky-600 mx-3" />
           {SB_Switch()}
+          <p className="border-r-2 border-sky-600 mx-3" />
+          {SB_Range()}
         </div>
-        <p className="border-b-2 border-sky-600 my-2"></p>
+        <p className="border-b-2 border-sky-600 my-2" />
+
         {SB_Toggle()}
         <div className="flex">
           <div className="flex flex-col gap-4 w-1/2">
-            <Range />
             <Header label="TextArea Header" />
             <TextArea />
             <MyComponent />
