@@ -23,7 +23,7 @@ const Dropdown = (props) => {
   };
 
   function settingLabel() {
-    props.options.forEach((item) => {
+    props.options.forEach ((item) => {
       if (item.selected) {
         setLabel(item.label);
         props.setValue ? props.setValue(item) : "";

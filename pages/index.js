@@ -1,11 +1,7 @@
 import StoryBook from "./storybook";
 
 export default function Home() {
-  return (
-   
-          <StoryBook />
-       
-  );
+  return <StoryBook />;
 }
 
 {

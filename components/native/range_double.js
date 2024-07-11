@@ -25,6 +25,9 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
     onChange({ min: minValRef.current, max: value });
   };
 
+  // Calculate the percentage of the slider range covered by min and max values
+  const minPercentage = ((minVal - min) / (max - min)) * 100;
+  const maxPercentage = ((maxVal - min) / (max - min)) * 100;
 
   return (
     <div className="bg-red-300 relative w-52 mb-5">
@@ -44,7 +47,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         value={minVal}
         ref={minValRef}
         onChange={handleMinChange}
-        className={`accent-sky-600 absolute top-0.5 w-48 ${maxVal - minVal < 10 ? 'z-50' : 'z-30'}  h-0 appearance-none outline-none bg-transparent`}
+        className={`accent-sky-600 absolute top-0.5 w-48 z-30 h-0 appearance-none outline-none bg-transparent`}
       />
 
       <div className="bg-gray-400 absolute z-1 w-full h-[5px] rounded-full" />

@@ -21,6 +21,10 @@ import { useState } from "react";
 import CheckBox from "@/components/native/checkbox";
 import Radio from "@/components/native/radio";
 import MultiRangeSlider from "@/components/native/range_double";
+import Dropdown from "@/components/native/dropdown_single";
+import { sendError } from "next/dist/server/api-utils";
+import DropdownMulti from "@/components/native/dropdown_multi";
+import Alert from "@/components/native/alert";
 
 export default function SB_Components() {
   // Dependent on two files Button.js and Logo.js
@@ -190,7 +194,7 @@ export default function SB_Components() {
       <div>
         <p className="font-bold underline text-sky-600 mb-2">Check Boxes</p>
         {checkedOptions.map((option) => (
-          <div className="flex gap-2">
+          <div className="flex gap-2" key={`checkbox-${option.id}`}>
             <CheckBox
               key={option.id}
               onChange={(e) => handleOptions(e, option)}
@@ -246,7 +250,7 @@ export default function SB_Components() {
       <div>
         <p className="font-bold underline text-sky-600 mb-2">Radio Buttons</p>
         {checkedOptions.map((option) => (
-          <div className="flex gap-2">
+          <div className="flex gap-2" key={`radio-${option.id}`}>
             <Radio
               key={option.id}
               onChange={(e) => handleOptions(e, option)}
@@ -306,6 +310,7 @@ export default function SB_Components() {
         <div className="flex flex-col gap-2">
           {checkedOptions.map((option) => (
             <Switch
+              key={option.label}
               label={option.label}
               checked={option.selected}
               onChange={(e) => handleOptions(e, option)}
@@ -317,21 +322,44 @@ export default function SB_Components() {
     );
   };
 
-  const SB_Toggle = () => {
+  const SB_TextBox = () => {
+    const [text, setText] = useState("");
+
     return (
-      <>
-        <p>Toggle Types :</p>
-        <div className="flex gap-2">
-          <Toggle2 left="left" right="right" />
-          <Toggle3 left="left" middle="middle" right="right" />
+      <div>
+        <p className="font-bold underline text-sky-600 mb-2">TextArea :</p>
+        <TextArea value={text} setValue={setText} />
+      </div>
+    );
+  };
+
+  const SB_Toggle = () => {
+    const [flag2, setflag2] = useState(false);
+    const [flag3, setflag3] = useState(0);
+    const [flag4, setflag4] = useState(0);
+
+    return (
+      <div className="flex flex-col gap-2">
+        <p className="font-bold underline text-sky-600 mb-2">Toggle Types :</p>
+        <div className="flex flex-col gap-2">
+          <Toggle2 left="left" right="right" flag={flag2} setFlag={setflag2} />
+          <Toggle3
+            left="left"
+            middle="middle"
+            right="right"
+            flag={flag3}
+            setFlag={setflag3}
+          />
           <Toggle4
             first="first"
             second="second"
             third="third"
             fourth="fourth"
+            flag={flag4}
+            setFlag={setflag4}
           />
         </div>
-      </>
+      </div>
     );
   };
 
@@ -346,9 +374,7 @@ export default function SB_Components() {
 
     return (
       <div className="flex flex-col gap-3">
-         <p className="font-bold underline text-sky-600 mb-2">
-          Range Types :
-        </p>
+        <p className="font-bold underline text-sky-600 mb-2">Range Types :</p>
         <div className="flex gap-2">
           <Range value={rangeValue} setValue={setRangeValue} />
           <p>Range Value: {rangeValue}</p>
@@ -361,6 +387,105 @@ export default function SB_Components() {
     );
   };
 
+  const SB_Dropdown = () => {
+    const methods = [
+      { value: "get", label: "GET", selected: true },
+      { value: "post", label: "POST", selected: false },
+      { value: "put", label: "PUT", selected: false },
+      { value: "patch", label: "PATCH", selected: false },
+      { value: "delete", label: "DELETE", selected: false },
+    ];
+
+    const cities = [
+      { label: "New York united states", value: "newYork", selected: false },
+      { label: "Oslo", value: "oslo", selected: false },
+      { label: "Istanbul", value: "istanbul", selected: false },
+      { label: "Salem", value: "Salem", selected: false },
+      { label: "Erode", value: "Erode", selected: false },
+      { label: "Coimbatore", value: "Coimbatore", selected: false },
+    ];
+
+    const [selected, setSelected] = useState("");
+    const [options, setOptions] = useState(methods);
+
+    const [multiOptions, setMultiOptions] = useState(cities);
+
+    return (
+      <div className="flex flex-col gap-2">
+        <p className="font-bold underline text-sky-600 mb-2">
+          Dropdown Single : {selected.label}
+        </p>
+        <Dropdown
+          options={options}
+          setOptions={setOptions}
+          setValue={setSelected}
+          width={"w-[140px]"}
+          height={"h-[37px]"}
+          className="mt-[3px]"
+        />
+        <p className="font-bold underline text-sky-600 mb-2">
+          Dropdown Multi :
+        </p>
+        <DropdownMulti
+          options={multiOptions}
+          setOptions={setMultiOptions}
+          width={"w-[140px]"}
+          height={"h-[50px]"}
+        />
+      </div>
+    );
+  };
+
+  const SB_Alert = () => {
+    const [alertOutputFlag, setAlertOutputFlag] = useState(false);
+    const [alertSuccessFlag, setAlertSuccessFlag] = useState(false);
+
+    return (
+      <div className="flex flex-col gap-2">
+        <Button
+          size="small"
+          type="primary_inverse"
+          label="Error Alert"
+          onClick={() => setAlertOutputFlag(true)}
+        />
+        <Alert
+          outputFlag={alertOutputFlag}
+          setOutputFlag={setAlertOutputFlag}
+          successFlag={alertSuccessFlag}
+          setSuccessFlag={setAlertSuccessFlag}
+          message={"alertOutputMessage"}
+          className=""
+        />
+        <Button
+          size="small"
+          type="primary_inverse"
+          label="Success Alert"
+          onClick={() => {
+            setAlertOutputFlag(true);
+            setAlertSuccessFlag(true);
+          }}
+        />
+      </div>
+    );
+  };
+
+  const SB_Table = () => {
+    const header = ["label", "value", "selected"];
+
+    const cities = [
+      ["New York united states", "newYork", "false"],
+      ["Oslo", "oslo", "false"],
+      ["Istanbul", "istanbul", "false"]
+    ];
+
+    return (
+      <div className="flex flex-col gap-3">
+        <p className="font-bold underline text-sky-600 mb-2">Table :</p>
+        <ProductTable headers={header} data={cities} action={true}/>
+      </div>
+    );
+  };
+
   return (
     <StoryBookLayout>
       <div className="flex flex-col gap-2">
@@ -369,6 +494,7 @@ export default function SB_Components() {
         </PopupModal> */}
         {SB_Button()}
         {SB_Input()}
+
         <div className="flex gap-2 ">
           {SB_Checkbox()}
           <p className="border-r-2 border-sky-600 mx-3" />
@@ -380,18 +506,27 @@ export default function SB_Components() {
         </div>
         <p className="border-b-2 border-sky-600 my-2" />
 
-        {SB_Toggle()}
+        <div className="flex gap-2 ">
+          {SB_TextBox()}
+          <p className="border-r-2 border-sky-600 mx-3" />
+          {SB_Dropdown()}
+          <p className="border-r-2 border-sky-600 mx-3" />
+          {SB_Alert()}
+          <p className="border-r-2 border-sky-600 mx-3" />
+          {SB_Toggle()}
+          <p className="border-r-2 border-sky-600 mx-3" />
+          {SB_Table()}
+        </div>
+        <p className="border-b-2 border-sky-600 my-2" />
+
         <div className="flex">
           <div className="flex flex-col gap-4 w-1/2">
-            <Header label="TextArea Header" />
-            <TextArea />
+            <Header label="Tab Header" />
             <MyComponent />
           </div>
           <div className="border-r-2 m-2 border-sky-600"></div>
-          <div className="flex flex-col gap-4 w-1/2">
-            <ProductTable />
-          </div>
         </div>
+        
       </div>
     </StoryBookLayout>
   );

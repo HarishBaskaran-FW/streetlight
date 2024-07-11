@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const Switch = (props) => {
   return (
-    <>
+    <div>
       <label className="relative inline-flex items-center cursor-pointer">
         <input
           type="checkbox"
@@ -30,7 +30,7 @@ const Switch = (props) => {
         ></div>
         <span className="ml-3 text-sm">{props.label}</span>
       </label>
-    </>
+    </div>
   );
 };
 

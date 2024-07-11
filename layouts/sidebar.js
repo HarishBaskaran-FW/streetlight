@@ -112,7 +112,7 @@ const Sidebar = (props) => {
 
       <ul className={`${ul_styles}`}>
         {props.menuItems.map((item, index) => (
-          <>
+          <React.Fragment key={`menu-item-fragment-${index}`}>
             <li
               key={`menu-item-${index}`}
               className={getClassNames(item.path, `${li_styles(isCollapsed)}`)}
@@ -154,9 +154,11 @@ const Sidebar = (props) => {
               )}
             </li>
             {!isCollapsed && item.subMenu && (
-              <>{expandedSubMenus[index] && renderSubMenu(item.subMenu)}</>
+              <React.Fragment key={`submenu-fragment-${index}`}>
+                {expandedSubMenus[index] && renderSubMenu(item.subMenu)}
+              </React.Fragment>
             )}
-           
+
             {/* <PopupModal
               flag={isCollapsed}
               containerStyles="bg-sky-600 !pt-1 !pb-2 !pl-0"
@@ -166,7 +168,7 @@ const Sidebar = (props) => {
                 <>{expandedSubMenus[index] && renderSubMenu(item.subMenu)}</>
               )}
             </PopupModal> */}
-          </>
+          </React.Fragment>
         ))}
       </ul>
     </div>

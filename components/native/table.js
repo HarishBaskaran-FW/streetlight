@@ -37,8 +37,8 @@ const ProductTable = ({
                   ))}
                   {action && (
                     <td key={index} className="px-6 py-4 flex gap-5">
-                      <Button icon="fas fa-pen" onClick={() => onEditClick(row)} />
-                      <Button icon="fas fa-trash" onClick={() => onDeleteClick(row)} />
+                      <Button icon="fas fa-pen" className="scale-75" onClick={() => onEditClick(row)} />
+                      <Button icon="fas fa-trash" className="scale-75" onClick={() => onDeleteClick(row)} />
                     </td>
                   )}
                 </tr>
