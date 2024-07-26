@@ -17,9 +17,14 @@ const sidebarConfig = {
       path: "/storybook/components",
     },
     {
-      title: "Header",
+      title: "Badge",
       icon: "fas fa-user",
-      path: "/storybook/header",
+      path: "/storybook/badges",
+    },
+    {
+      title: "Widget",
+      icon: "fas fa-user",
+      path: "/storybook/widgets",
     },
     {
       title: "Cart",
